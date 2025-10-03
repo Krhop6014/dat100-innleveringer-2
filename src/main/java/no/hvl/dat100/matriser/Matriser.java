@@ -2,51 +2,105 @@ package no.hvl.dat100.matriser;
 
 public class Matriser {
 
-	// a)
-	public static void skrivUt(int[][] matrise) {
-		
-		// TODO
-		throw new UnsupportedOperationException("Metoden skrivUt ikke implementert");
-	}
+    // a)
+    public static void skrivUt(int[][] matrise) {
 
-	// b)
-	public static String tilStreng(int[][] matrise) {
+        if (matrise == null) {
+            return;
+        }
 
-		// TODO
-		throw new UnsupportedOperationException("Metoden tilStreng ikke implementert");
-		
-	}
+        for (int[] rad : matrise) {
 
-	// c)
-	public static int[][] skaler(int tall, int[][] matrise) {
-		
-		// TODO
-		throw new UnsupportedOperationException("Metoden skaler ikke implementert");
-	
-	}
+            for (int variabel : rad) {
 
-	// d)
-	public static boolean erLik(int[][] a, int[][] b) {
+                System.out.print(variabel + " ");
+            }
 
-		// TODO
-		throw new UnsupportedOperationException("Metoden erLik ikke implementert");
-		
-	}
-	
-	// e)
-	public static int[][] speile(int[][] matrise) {
+            System.out.println();
+        }
+    }
 
-		// TODO
+    // b)
+    public static String tilStreng(int[][] matrise) {
 
-		throw new UnsupportedOperationException("Metoden speile ikke implementert");
-	
-	}
+            if (matrise == null) {
+                return "";
+            }
 
-	// f)
-	public static int[][] multipliser(int[][] a, int[][] b) {
+            String resultat = "";
 
-		// TODO
-		throw new UnsupportedOperationException("Metoden multipliser ikke implementert");
-	
-	}
+            for (int i = 0; i < matrise.length; i++) {
+                int[] rad = matrise[i];
+
+                for (int j = 0; j < rad.length; j++) {
+
+                    resultat = resultat + rad[j];
+
+                    if (j < rad.length - 1) {
+                        resultat = resultat + " ";
+                    }
+                }
+
+                resultat = resultat + "\n";
+            }
+
+            return resultat;
+        }
+
+    // c)
+    public static int[][] skaler(int tall, int[][] matrise) {
+
+        if (matrise == null) {
+            return null;
+        }
+
+        int rader = matrise.length;
+
+        int kolonner = (rader > 0) ? matrise[0].length : 0;
+
+        int[][] nyMatrise = new int[rader][kolonner];
+
+        for (int i = 0; i < rader; i++) {
+            for (int j = 0; j < matrise[i].length; j++) {
+
+                nyMatrise[i][j] = matrise[i][j] * tall;
+            }
+        }
+
+        return nyMatrise;
+
+    }
+
+    // d)
+    public static boolean erLik(int[][] a, int[][] b) {
+
+        if (a == null && b == null) {
+            return true;
+        }
+
+        if (a == null || b == null) {
+            return false;
+        }
+
+        if (a.length != b.length) {
+            return false;
+        }
+
+        for (int i = 0; i < a.length; i++) {
+
+            if (a[i].length != b[i].length) {
+                return false;
+            }
+
+            for (int j = 0; j < a[i].length; j++) {
+                if (a[i][j] != b[i][j]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+
+    }
 }
+
